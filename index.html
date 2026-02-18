@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Birthday Wish 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+}
+
+/* Floating Hearts */
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+.container {
+    position: relative;
+    top: 150px;
+}
+
+h1 {
+    color: white;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#message {
+    margin-top: 30px;
+    font-size: 18px;
+    color: white;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Birthday Wish For You 💕</h1>
+    <button onclick="showWish()">Open Birthday Wish</button>
+    <p id="message"></p>
+</div>
+
+<script>
+function showWish() {
+
+    let wish = `Happy Birthday. I know things between us have changed, but I just want you to know that I still wish happiness, success, and peace for you always. You were and will always be special to me. I don’t know what the future holds, but I’m grateful for the memories we shared. Take care and have a beautiful birthday.
+
+Even though we are not together now, my prayers and good wishes for you will never change. You still mean a lot to me, and I genuinely hope this year brings you happiness and everything you dream of. I’ll always cherish what we had.
+
+I don’t know what the future holds for us, but I want you to know I still care about you and I’m still waiting for you. I hope you’re happy and doing well. You will always be special to me.`;
+
+    document.getElementById("message").innerText = wish;
+}
+
+/* Floating Hearts */
+function createHeart() {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
