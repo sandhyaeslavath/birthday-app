@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday</title>
+<title>Happy Birthday ❤️</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ff758c, #ff7eb3);
-    overflow: hidden;
     text-align: center;
-    color: white;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    overflow: hidden;
 }
 
 /* Floating Hearts */
@@ -24,61 +21,89 @@ body {
 }
 
 @keyframes float {
-    0% { transform: translateY(100vh); opacity: 1; }
-    100% { transform: translateY(-10vh); opacity: 0; }
+    0% {transform: translateY(100vh);}
+    100% {transform: translateY(-10vh);}
 }
 
 /* Message Box */
 #messageBox {
+    display: none;
+    margin-top: 60px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
     width: 80%;
-    margin: 100px auto;
-    font-size: 20px;
-    line-height: 1.6;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 15px pink;
+}
+
+/* Button */
+button {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    margin-top: 200px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🎂 Happy Birthday 🎂</h1>
+<h1 style="color:white;">🎂 Happy Birthday 🎂</h1>
 
-<div id="messageBox"></div>
+<button onclick="startSurprise()">Open Your Surprise 💝</button>
 
-<!-- Background Music -->
-<audio autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+<div id="messageBox">
+    <h2 id="typing"></h2>
+    <h3 style="color: #ff4d6d;">💌 From Sandy</h3>
+</div>
+
+<audio id="music" loop>
+    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.wav" type="audio/wav">
 </audio>
 
 <script>
 
 /* Typing Message */
-let text = `Happy Birthday. I know things between us have changed, but I just want you to know that I still wish happiness, success, and peace for you always. You were and will always be special to me.
+let text = `Happy Birthday. I know things between us have changed, but I just want you to know that I still wish happiness, success, and peace for you always.
 
-I don’t know what the future holds, but I’m grateful for the memories we shared. Take care and have a beautiful birthday.
+You were and will always be special to me. I don’t know what the future holds, but I’m grateful for the memories we shared.
 
-Even though we are not together now, my prayers and good wishes for you will never change. You still mean a lot to me, and I genuinely hope this year brings you happiness and everything you dream of.
+Even though we are not together now, my prayers and good wishes for you will never change. You still mean a lot to me.
 
-I don’t know what the future holds for us, but I want you to know I still care about you and I’m still waiting for you. I hope you’re happy and doing well. You will always be special to me.
-
-💌 From Sandy`;
+I don’t know what the future holds for us, but I want you to know I still care about you and I’m still waiting for you.`;
 
 let i = 0;
-function typing() {
+
+function typeWriter() {
     if (i < text.length) {
-        document.getElementById("messageBox").innerHTML += text.charAt(i);
+        document.getElementById("typing").innerHTML += text.charAt(i);
         i++;
-        setTimeout(typing, 40);
+        setTimeout(typeWriter, 40);
     }
 }
-typing();
 
-/* Floating Hearts Animation */
+/* Start Surprise */
+function startSurprise() {
+    document.querySelector("button").style.display = "none";
+    document.getElementById("messageBox").style.display = "block";
+    document.getElementById("music").play();
+    typeWriter();
+}
+
+/* Floating Hearts Generator */
 function createHeart() {
     let heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "❤️";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
     document.body.appendChild(heart);
 
     setTimeout(() => {
